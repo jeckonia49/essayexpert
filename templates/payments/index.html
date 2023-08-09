@@ -1,0 +1,142 @@
+{% extends "base.html" %} {% block title %} Payment || {{ order.topic }}
+{% endblock title %} {% block head %}
+<script src="https://www.paypal.com/sdk/js?client-id=AVHnEsc0wyStTJgrj3AZ6JxxAo0y-D_7fd7UIqNJ-Ct0kQFN2PSBBR6c-gn3H2FdvWwlng8BR_Gi_sSw&currency=USD"></script>
+
+{% endblock head %} {% block content %}
+
+<section class="w-full">
+  <div class="container md:grid grid-cols-3 md:gap-x-5 gap-x-0">
+    <div class="col-span-2">
+      <div
+        class="w-full bg-white shadow-md border border-1 border-gray py-4 px-5"
+      >
+        <div class="pb-5 mb-3 border-b-1 border-gray divide-y-2">
+          <h1 class="text-gray-600 font-semibold text-xl">
+            Your Order Summary
+          </h1>
+        </div>
+
+        <div class="card w-3/4 rounded-0 shadow-sm hover:shadow-sm">
+          <div class="flex items-start justify-start flex-col">
+            <div class="flex items-start justify-start space-x-5">
+              <h1>Order</h1>
+              :
+              <p class="font-bold text-xl text-gray-500">{{ order.topic }}</p>
+            </div>
+            <div class="flex items-start justify-start space-x-5">
+              <h1>OrderId</h1>
+              :
+              <p class="font-bold text-xl text-gray-500">
+                {{ order.order_id_code }}
+              </p>
+            </div>
+            <div class="flex items-start justify-start space-x-5">
+              <h1>OrderPrice</h1>
+              :
+              <p class="font-bold text-xl text-gray-500">${{ order.price }}</p>
+            </div>
+            <div class="flex items-start justify-start space-x-5">
+              <h1>Expected Delivery:</h1>
+              :
+              <p class="font-bold text-xl text-gray-500">
+                {{ order.deadline_date|date:'Y-m-d' }}
+                , {{ order.deadline_time }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-1">
+      
+      <div id="paypal-button-container"></div>
+      <input name="client" id="{{request.user.user_profile}}" title="client" type="hidden" />
+      {% if request.user.is_anonymous %}
+      <div class="py-1 my-1" id="hide-after-submission">
+          <p class="text-sm text-gray-300 py-1">
+              Your are not logged in. Kindly enter your email
+          </p>
+          
+        <form submit="handleEmailSubmit()" id="submit-email" method="POST" action="{% url 'payments:payments_order_detail' order.pk order.slug %}">   
+            {% csrf_token %}
+            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                   
+                </div>
+                <input type="email" name="email" id="email-input" class="block w-full p-4 pl-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Account email address" required>
+                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit Email</button>
+            </div>
+        </form>
+          
+          <p  class="text-sm text-gray-300 py-1">This will be used to verify your payment and order.</p>
+      </div>
+      
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  paypal
+    .Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: '{{order.price}}'
+              }
+            }
+          ]
+        })
+        
+        
+      },
+
+      onApprove: function (data, actions) {
+        client = document.getElementById("{{request.user.user_profile}}");
+        if (client === null){
+            alert("Kindly login to proceed")
+
+            function handleEmailSubmit(){
+                const formData = new FormData();
+                formData.append("email", document.getElementById("email-input").value);
+                formData.append("csrfmiddlewaretoken", "{{csrf_token}}");
+                
+                const response = fetch("{% url 'payments:payments_order_detail' order.pk order.slug %}", {
+                    method: "POST",
+                    credentials:"include",
+                    body:formData
+                });
+                
+                document.getElementById("hide-after-submission").style.display="none"
+                
+            }
+        
+        }else{
+            return actions.order.capture().then(function (details) {
+       
+                alert("Hello, {{request.user.email}} Your order wass reeceived")
+                
+                function handleEmailSubmit(){
+                      const formData = new FormData();
+                      formData.append("order_id", "{{order.id}}");
+                      formData.append("csrfmiddlewaretoken", "{{csrf_token}}");
+                      
+                      const response = fetch("{% url 'payments:payments_order_detail' order.pk order.slug %}", {
+                          method: "POST",
+                          credentials:"include",
+                          body:formData
+                      });
+                  }
+        
+        })
+        }
+        
+      }
+    })
+    .render('#paypal-button-container')
+</script>
+
+{% endblock content %}

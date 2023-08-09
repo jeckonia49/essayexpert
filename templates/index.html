@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Home{% endblock title %}
+
+<!--  -->
+
+{% block content %}
+
+<!-- hero -->
+{% include "home/sections//hero.html" %}
+<!--  -->
+
+{% include "assignments/weekly.html" %}
+
+<!-- howitworks -->
+{% include "home/sections/howitworks.html" %}
+<!-- search -->
+{% include "home/sections/search.home.html" %}
+<!-- testimonials -->
+{% include "home/sections/testimonials.html" %}
+
+<!-- cta -->
+
+{% include "home/sections/cta.home.html" %} {% endblock content %}

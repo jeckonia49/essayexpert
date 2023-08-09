@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Accounts||
+{% endblock title %}
+
+{% block content %}
+
+<section class="container">
+    <div class="flex items-center justify-start space-x-4">
+        <div>Essay</div>
+        <ul class="hidden sm:flex items-center justify-start space-x-4">
+          <li><a>Activity</a></li>
+          <li><a>Activity</a></li>
+          <li><a>Activity</a></li>
+          <li><a>Activity</a></li>
+        </ul>
+      </div>
+</section>
+<section class="bg-[#F5F7FA] w-full">
+    {% block main %}
+    {% endblock main %}
+</section>
+{% endblock content %}

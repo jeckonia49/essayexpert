@@ -1,0 +1,123 @@
+{% extends "flatpages/base.html" %}
+{% load static %}
+{% block title %}Blog{% endblock title %}
+
+{% block content %}
+<section class="w-full md:py-20 scroll-smooth hover:scroll-auto">
+<div class="container md:grid grid-cols-3">
+    <div class="col-span-1 py-4 px-1 hidden md:flex flex-col items-start justify-between h-full">
+        <div class="h-[80%] w-[100%]">
+            <div class="py-3 my-5">
+                <form class="w-[90%] mx-auto">
+                    <label for="default-search" class="dark:text-white mb-2 text-sm font-medium text-gray-900 sr-only">Serch blo for papers</label>
+                    <div class="relative">
+                    <button title="search" type="submit" class="absolute inset-y-1 right-1 pr-8 flex items-center justify-center px-7 bg-blue-50 rounded-md cursor-pointer">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                    </button>
+                    <input type="search" id="default-search" class="block w-full p-4 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"  placeholder="Search posts" />
+                    </div>
+              
+                </form>
+            </div>
+            <div class="mt-7 py-10 bg-white shadow-sm shadow-gray-200 w-[90%] mx-auto rounded-lg">
+                <div class="px-10">
+                <h1 class="font-bold text-xl text-gray-800">
+                    Categories
+                
+                </h1>
+                <ul class="my-2 divide-y rounded-none divide-gray-300 divide-2 mb-1">
+                    <li class="hover:cursor-pointer hover:bg-slate-100 py-5 text-gray-500 font-medium my-2">Culture</li>
+                    <li class="hover:cursor-pointer hover:bg-slate-100 py-5 text-gray-500 font-medium my-2 ">Travel</li>
+                    <li class="hover:cursor-pointer hover:bg-slate-100 py-5 text-gray-500 font-medium my-2 ">AdmissionLetter</li>
+                    <li class="hover:cursor-pointer hover:bg-slate-100 py-5 text-gray-500 font-medium my-2 ">Contract</li>
+                    <li></li>
+                </ul>
+                </div>
+            </div>
+            <div class="mt-7 py-10 bg-white shadow-sm shadow-gray-200 w-[90%] mx-auto rounded-lg">
+                <div class="px-10 w-full">
+                    <h1 class="font-bold text-xl text-gray-800">
+                        Top Posts
+                    </h1>
+                    
+                    <div class="my-2  w-full">
+
+                        <a href="" class="w-[100%] flex items-start py-5">
+                            <div class="text-3xl font-extrabold text-gray-800/50 w-1/5">
+                                1
+                            </div>
+                            <div class="w-[90%]">
+                            <p class="line-clamp-2 text-base font-semibold text-gray-400 text-muted-foreground">Tailwind lets you conditionally apply utility classes in</p>
+                            <small class="text-xs font-bold text-primary py-2">Travel, English - Nov, 17/2022</small>
+                            </div>
+                        </a>
+
+                        <a href="" class="w-[100%] flex items-start py-5">
+                            <div class="text-3xl font-extrabold text-gray-800/50 w-1/5">
+                                2
+                            </div>
+                            <div class="w-[90%]">
+                            <p class="line-clamp-2 text-base font-semibold text-gray-400 text-muted-foreground">Tailwind lets you conditionally apply utility classes in</p>
+                            <small class="text-xs font-bold text-primary py-2">Travel, English - Nov, 17/2022</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+   
+    </div>
+    <div class="col-span-3 md:col-span-2 py-2 md:py-5 sticky top-0 scroll-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-5 px-5">
+        <a href="" class="card shadow-md rounded-lg rounded-gray-300">
+            <div class="w-full bg-no-repeat bg-center h-auto rounded rounded-t-lg">
+                <img src="{% static 'assets/blogs/post1.jpg' %}" alt="post-1" class="rounded-t-lg" />
+            </div>
+            <div class="px-8 py-5">
+                <small class="text-xs font-bold text-primary py-2">Travel, English - Nov, 17/2022</small>
+                <p class="line-clamp-2 text-base font-semibold text-gray-400 text-muted-foreground py-4">Tailwind lets you conditionally apply utility classes in</p>
+                <p class="line-clamp-4 text-sm font-medium text-blue-500 italic">
+                    You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:bg-top to apply the bg-top utility at only medium screen sizes and above.
+                </p>
+
+            </div>
+        </a >
+        
+        <a href="" class="card shadow-md rounded-lg rounded-gray-300 border-1 border-gray-400">
+            <div class="w-full bg-no-repeat bg-center h-auto">
+                <img src="{% static 'assets/blogs/blog2.jpg' %}" alt="post-1"  class=" rounded rounded-t-lg" />
+            </div>
+            <div class="px-8 py-5">
+                <small class="text-xs font-bold text-primary py-2">Travel, English - Nov, 17/2022</small>
+                <p class="line-clamp-2 text-base font-semibold text-gray-400 text-muted-foreground py-4">Tailwind lets you conditionally apply utility classes in</p>
+                <p class="line-clamp-4 text-sm font-medium text-blue-500 italic">
+                    You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:bg-top to apply the bg-top utility at only medium screen sizes and above.
+                </p>
+
+            </div>
+        </a >
+        
+        <a href="" class="card shadow-md rounded-lg rounded-gray-300">
+            <div class="w-full bg-no-repeat bg-center h-auto">
+                <img src="{% static 'assets/blogs/blog1.jpg' %}" alt="post-1"  class=" rounded rounded-t-lg" />
+            </div>
+            <div class="px-8 py-5">
+                <small class="text-xs font-bold text-primary py-2">Travel, English - Nov, 17/2022</small>
+                <p class="line-clamp-2 text-base font-semibold text-gray-400 text-muted-foreground py-4">Tailwind lets you conditionally apply utility classes in</p>
+                <p class="line-clamp-4 text-sm font-medium text-blue-500 italic">
+                    You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:bg-top to apply the bg-top utility at only medium screen sizes and above.
+                </p>
+
+            </div>
+        </a >
+      
+        
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock content %}

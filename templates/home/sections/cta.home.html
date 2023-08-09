@@ -1,0 +1,41 @@
+<section class="py-20 px-0 bg-[#abb8c3]">
+  <div class="container py-3">
+    <div
+      class="md:grid grid-cols-3 md:gap-x-5 flex-col items-start justify-center"
+    >
+      <div class="col-span-2 py-3">
+        <h1 class="text-3xl font-semibold text-black/50 py-4">
+          Let our team of professional writers take care of your assignment for
+          you!
+        </h1>
+        <p class="py-3 pb-11 text-sm text-gray-500">
+          Sit back, relax, and leave the writing to us!
+        </p>
+        <a
+          href="{% url 'assignments:place_order' %}"
+          class="hover:bg-gray-500 delay-75 py-4 px-6 text-white bg-gray-500 rounded-sm shadow-sm text-xl font-medium"
+        >
+          Order Paper Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="w-full py-5 px-0 bg-white">
+  <div class="container py-5 px-5">
+    <div class="flex items-center justify-center space-x-10">
+      <p class="text-xl font-medium text-gray-300">
+        Regsiter to start earning with us
+        <span>Quality Work Quaranteed</span> at EssayExpert
+      </p>
+      <a
+        href="{% url 'accounts:register' %}"
+        type="button"
+        class="py-4 px-6 text-center items-center justify-center text-xl text-white bg-gray-950/40 rounded-2 rounded-sm cursor-pointer hover:bg-slate-400 delay-75"
+      >
+        Join EssayExpert
+      </a>
+    </div>
+  </div>
+</section>
